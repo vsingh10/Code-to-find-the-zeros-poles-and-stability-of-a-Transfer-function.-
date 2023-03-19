@@ -1,0 +1,30 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+#Define transfer equation
+print("Enter the Coefficients of numerator")
+num=list(float(x) for x in input().split())
+print("Enter the Coefficients of denominator")
+den=list(float(x) for x in input().split())
+
+#find poles and zeroes
+zero = np.roots(num)
+print("Zeros are ", zero )
+poles = np.roots(den)
+print("Poles are ", poles )
+
+#to check stabilty
+if all(poles<0):
+    print("Transfer function is Stable")
+else:
+    print("Transfer function is not stable")
+
+#plotting the zeroes and poles
+
+plt.scatter(np.real(poles), np.imag(poles), marker='x', color='red', label='Poles')
+plt.scatter(np.real(zero), np.imag(zero), marker='o', color='blue', label='Zeros')
+plt.xlabel('Real')
+plt.ylabel('Imaginary')
+plt.legend()
+plt.grid()
+plt.show()
